@@ -23,8 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Logic\" />
-	  <Folder Include="SqliteDataAccess\" />
+	  <Folder Include="DataAccess\" />
 	</ItemGroup>
 
 </Project>
