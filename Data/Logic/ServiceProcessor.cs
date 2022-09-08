@@ -1,5 +1,5 @@
 ﻿using DataLibrary.Models;
-using DataLibrary.SqliteDataAccess;
+using DataLibrary.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,21 @@ namespace DataLibrary.Logic
 {
     public class ServiceProcessor
     {
-        public static int AddNewService()
+        public static List<ServiceModel> LoadServices()
         {
 
         }
+
+        public static int AddNewService(string shortDesc, string notes, decimal price, string status, int carID, )
+        {
+            
+        }
+
+        public static int EditService()
+        {
+
+        }
+
+
     }
 }

@@ -12,7 +12,15 @@ namespace DataLibrary.Logic
     {
         public static List<CarModel> LoadCars()
         {
-            string sql = @"SELECT * FROM Car INNERJOIN  Make ON Car.MakeID = Make.ID ...";
+            string sql = @"SELECT Car.ID, Car.LicansePlateNumber, Make.Name AS Make, Customer.Name AS Owner, Model.Name AS Model, YearOfProduction.Year AS YearOfProduction,
+                            Car.Generation, Engine.Name AS Engine FROM Car 
+                            INNER JOIN  Make ON Car.MakeID = Make.ID 
+                            INNER JOIN Customer ON Car.CustomerID = Customer.ID
+                            INNER JOIN Model ON Car.ModelID = Model.ID 
+                            INNER JOIN YearOfProduction ON Car.YearOfProductionID = YearOfProduction.ID
+                            INNER JOIN Engine ON Car.EngineID = Engine.ID
+                            ORDER BY Car.AccessDate DESC
+                            ";
             
             return SqliteDataAccess.LoadData<CarModel>(sql);
         }

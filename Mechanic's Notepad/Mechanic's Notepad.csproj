@@ -81,6 +81,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="Views\CarListView.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="MechNoteDB.db" />
 	</ItemGroup>
 
@@ -88,6 +92,20 @@
 	  <Content Include="MechNoteDB.db">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Views\CarListView.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Data\DataLibrary.csproj" />
 	</ItemGroup>
 
 </Project>
