@@ -81,10 +81,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Remove="Views\CarListView.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Remove="MechNoteDB.db" />
 	</ItemGroup>
 
@@ -95,17 +91,29 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Views\CarListView.xaml">
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-	  </EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Data\DataLibrary.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\CarListPage.xaml.cs">
+	    <DependentUpon>CarListPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CarDetailsPage.xaml.cs">
+	    <DependentUpon>CarDetailsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\CarListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CarDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

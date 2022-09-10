@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mechanic_s_Notepad.Views.CarListPage"
+             xmlns:viewmodel="clr-namespace:Mechanic_s_Notepad.ViewModels"
+             x:DataType="viewmodel:CarListViewModel"
+             xmlns:model="clr-namespace:Mechanic_s_Notepad.Models"
+             Title="{Binding Title}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width ="5*"/>
+            <ColumnDefinition Width ="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button Text="+" Grid.Column="2" Grid.Row="1" FontSize="56" TextColor="Black" BackgroundColor="SteelBlue" Margin="1"/>
+        <RefreshView x:DataType="viewmodel:CarListViewModel" Command="{Binding LoadCarsCommand}" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <CollectionView x:Name="CarListView" ItemsSource="{Binding Cars}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Car">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Make}"
+                               FontSize="Default"
+                               Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="{Binding Model}"
+                               FontSize="Default"
+                               Grid.Column="1" Grid.Row="0"/>
+                        <Label Text="{Binding Generation}"
+                               FontSize="Default"
+                               Grid.Column="2" Grid.Row="0"/>
+                        <Label Text="{Binding YearOfProduction}"
+                               FontSize="Default"
+                               Grid.Column="0" Grid.Row="1"/>
+                        <Label Text="{Binding Engine}"
+                               FontSize="Default"
+                               Grid.Column="1" Grid.Row="1"
+                               Grid.RowSpan="2"/>
+                        <Label Text="{Binding Owner}"
+                               FontSize="Default"
+                               Grid.Column="0" Grid.Row="2"
+                               Grid.RowSpan="2"/>
+                        <Label Text="{Binding LicansePlateNumber}"
+                               FontSize="Default"
+                               Grid.Column="2" Grid.Row="2"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+    </Grid>
+</ContentPage>

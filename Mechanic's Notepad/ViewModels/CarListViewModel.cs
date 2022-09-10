@@ -13,6 +13,7 @@ namespace Mechanic_s_Notepad.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+
         public ObservableCollection<Car> Cars { get; }
         public Command LoadCarsCommand { get; }
         public Command<Car> CarTapped { get; }
@@ -24,13 +25,14 @@ namespace Mechanic_s_Notepad.ViewModels
             Cars = new ObservableCollection<Car>();
             LoadCarsCommand = new Command(ExecuteLoadCarsCommand);
             CarTapped = new Command<Car>(OnCarSelected);
+            //ExecuteLoadCarsCommand();
         }
 
         private void OnCarSelected(Car obj)
         {
             throw new NotImplementedException();
         }
-
+        
         private void ExecuteLoadCarsCommand()
         {
             Cars.Clear();
@@ -46,7 +48,8 @@ namespace Mechanic_s_Notepad.ViewModels
                         Model = car.Model,
                         Engine = car.Engine,
                         YearOfProduction = car.YearOfProduction,
-                        Owner = car.Owner
+                        Owner = car.Owner,
+                        Generation = car.Generation,
                     });
                 }
         }

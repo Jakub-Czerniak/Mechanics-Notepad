@@ -12,17 +12,17 @@ namespace DataLibrary.Logic
     {
         public static List<ServiceModel> LoadServices()
         {
-
+            return null;
         }
 
-        public static int AddNewService(string shortDesc, string notes, decimal price, string status, int carID, )
+        public static int AddNewService(string shortDesc, string notes, decimal price, string status, int carID )
         {
-            
+            return 0;
         }
 
         public static int EditService()
         {
-
+            return 0;
         }
 
 

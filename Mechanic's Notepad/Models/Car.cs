@@ -15,6 +15,8 @@ namespace Mechanic_s_Notepad.Models
         public int YearOfProduction { get; set; }
         public string Engine { get; set; }
         public string Owner { get; set; }
+        public string Generation { get; set; }
 
+        public string Notes { get; set; }
     }
 }
