@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Maui.Media;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,13 +14,14 @@ namespace DataLibrary.DataAccess
     {
         private static string LoadConnectionString()
         {
-            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MechNoteDB.db");
+            string dbPath = $"Data source = C:\\Users\\Kuba\\source\\repos\\Mechanic's Notepad\\Mechanic's Notepad\\MechNoteDB.db";
+            //var dbPath = Path.Combine("Data source =", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MechNoteDB.db");
             return dbPath; 
         }
 
         public static List<T> LoadData<T>(string sql)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()) )
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 return cnn.Query<T>(sql).ToList();
         }
 

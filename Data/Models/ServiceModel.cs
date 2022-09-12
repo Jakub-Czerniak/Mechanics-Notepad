@@ -8,11 +8,12 @@ namespace DataLibrary.Models
 {
     public class ServiceModel
     {
+        public int ID;
         public string ShortDesc;
         public string Notes;
         public decimal Price;
         public string Status;
-        public DateTime date;
+        public DateTime Date;
         public int CarID;
         public List<string> ToDoPoints;
         public List<Image> Photos;

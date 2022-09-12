@@ -5,30 +5,44 @@ using DataLibrary.Logic;
 
 namespace Mechanic_s_Notepad.ViewModels
 {
-    partial class CarDetailsViewModel : ObservableObject
+    public partial class CarDetailsViewModel : ObservableObject
     {
         [ObservableProperty]
         Car car;
+        [ObservableProperty]
+        List<Service> services;
 
         [RelayCommand]
         void LoadCarDetails(int id)
         {
-            var obj = CarProcessor.LoadCarDetails(id);
+            var carObj = CarProcessor.LoadCarDetails(id);
             car = new Car();
-            car.Id = obj[0].ID;
-            car.Make = obj[0].Make;
-            car.Model = obj[0].Model;
-            car.Engine = obj[0].Engine;
-            car.Owner = obj[0].Owner;
-            car.Generation = obj[0].Generation;
-            car.LicansePlateNumber = obj[0].LicensePlateNumber;
-            car.YearOfProduction = obj[0].YearOfProduction;
-            car.Notes = obj[0].Notes;
+            car.Id = carObj[0].ID;
+            car.Make = carObj[0].Make;
+            car.Model = carObj[0].Model;
+            car.Engine = carObj[0].Engine;
+            car.Owner = carObj[0].Owner;
+            car.Generation = carObj[0].Generation;
+            car.LicansePlateNumber = carObj[0].LicensePlateNumber;
+            car.YearOfProduction = carObj[0].YearOfProduction;
+            car.Notes = carObj[0].Notes;
+            var serviceObj = ServiceProcessor.LoadCarSeviceHistory(id);
+            services.Clear();
+            if (services.Count != 0)
+                foreach (var service in serviceObj)
+                    services.Add(new Service
+                    {
+                        Id = service.ID,
+                        ShortDesc = service.ShortDesc,
+                        Status = service.Status,
+                        Date = service.Date,
+                    });
+
         }
 
-        CarDetailsViewModel()
+        public CarDetailsViewModel()
         {
-
+            services = new List<Service>();
         }
     }
 }

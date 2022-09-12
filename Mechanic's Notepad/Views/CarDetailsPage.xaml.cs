@@ -1,9 +1,13 @@
+using Mechanic_s_Notepad.ViewModels;
+
 namespace Mechanic_s_Notepad.Views;
 
-public partial class NewPage1 : ContentPage
+public partial class CarDetailsPage : ContentPage
 {
-	public NewPage1()
+	public CarDetailsPage()
 	{
 		InitializeComponent();
+        BindingContext = new CarDetailsViewModel();
+
 	}
 }

@@ -25,7 +25,7 @@ namespace Mechanic_s_Notepad.ViewModels
             Cars = new ObservableCollection<Car>();
             LoadCarsCommand = new Command(ExecuteLoadCarsCommand);
             CarTapped = new Command<Car>(OnCarSelected);
-            //ExecuteLoadCarsCommand();
+            ExecuteLoadCarsCommand();
         }
 
         private void OnCarSelected(Car obj)
