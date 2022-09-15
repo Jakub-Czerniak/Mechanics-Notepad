@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mechanic's Notepad", "Mechanic's Notepad\Mechanic's Notepad.csproj", "{BCA846D6-45C8-41E5-8958-CE826963204D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "Data\DataLibrary.csproj", "{9F20A058-970A-434D-BF29-3AB73FF4EDF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLibrary", "Data\DataLibrary.csproj", "{9F20A058-970A-434D-BF29-3AB73FF4EDF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

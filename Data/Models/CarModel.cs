@@ -11,6 +11,7 @@ namespace DataLibrary.Models
         public int ID;
         public string LicensePlateNumber;
         public string Owner;
+        public string PhoneNumber;
         public string Make;
         public string Model;
         public int YearOfProduction;

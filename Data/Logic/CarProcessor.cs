@@ -56,20 +56,58 @@ namespace DataLibrary.Logic
             return SqliteDataAccess.SaveData<CarModel>(sql, data);
         }
 
-        public static int AddNewCar(string owner, string make, string model, int year, string generation, string engine)
+        public static int AddNewCar(string owner, string phoneNumber, string licenseNumber ,string make, string model, int year, string engine, string generation)
         {
             CarModel data = new CarModel
             {
                 Owner = owner,
+                PhoneNumber = phoneNumber,
+                LicensePlateNumber = licenseNumber,
                 Make = make,
                 Model = model,
                 YearOfProduction = year,
-                Generation = generation,
                 Engine = engine,
+                Generation = generation,
             };
 
-            string sql = @"";
-
+            string sql =
+                @"IF NOT EXISTS (SELECT * FROM Customer WHERE PhoneNumber = @PhoneNumber)
+                    BEGIN
+                    INSERT INTO Customer(Name, PhoneNumber)
+                    VALUES (@Owner, @PhoneNumber)
+                    SET @customerID = SCOPE_IDENTITY()
+                    END
+                    ELSE
+                    BEGIN
+                    SET @customerID = (SELECT ID FROM Customer WHERE PhoneNumber = @PhoneNumber)
+                    UPDATE Customer
+                    SET Name = @Owner
+                    WHERE ID = @customerID
+                    END
+                    
+                    IF NOT EXISTS (SELECT * FROM Make WHERE Name=@Make)
+                    BEGIN
+                    INSERT INTO Make(Name)
+                    VALUES (@Make)
+                    SET @makeID = SCOPE_IDENTITY()
+                    END
+                    ELSE
+                    BEGIN
+                    SET @makeID = (SELECT ID FROM Make WHERE Name = @Make)
+                    END
+                    
+                    IF NOT EXISTS (SELECT * FROM Model WHERE MakeID = @makeID AND Name = @Model)
+                    BEGIN 
+                    INSERT INTO Model(MakeID, Name)
+                    VALUES(@makeID, @Model)
+                    ELSE
+                    BEGIN
+                    SET @modelID = (SELECT ID FROM Model WHERE MakeID = @makeID AND Name = @Model)
+                    END
+                    
+                    IF NOT EXISTS
+                    
+                    ";
             return SqliteDataAccess.SaveData<CarModel>(sql, data);
         }
 

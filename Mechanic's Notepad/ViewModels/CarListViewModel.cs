@@ -2,6 +2,7 @@
 using Mechanic_s_Notepad.Models;
 using System.Collections.ObjectModel;
 using DataLibrary.Logic;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Mechanic_s_Notepad.ViewModels
 {
@@ -52,6 +53,12 @@ namespace Mechanic_s_Notepad.ViewModels
                         Generation = car.Generation,
                     });
                 }
+        }
+
+        [RelayCommand]
+        async void AddButtonTap()
+        {
+            await Shell.Current.GoToAsync("AddCarPage");
         }
     }
 }
