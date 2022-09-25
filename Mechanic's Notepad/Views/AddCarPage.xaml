@@ -15,9 +15,8 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="Add a new car" FontSize="18" VerticalOptions="Center" />
-                <Button x:Name="SaveButton" Command="{Binding AddNewCarCommand}" Grid.Column="1" Text="Save"  HorizontalOptions="End" BackgroundColor="Black" 
+                <Button x:Name="SaveButton" Command="{Binding AddNewCarCommand}" Grid.Column="1" Text="Save"  HorizontalOptions="End" BackgroundColor="Wheat"
                         BorderColor="Black" TextColor="{Binding SaveButtonTextColor}" />
-
             </Grid>
             
             <Label Text="Owner" TextColor="Gray" FontSize="Small"/>

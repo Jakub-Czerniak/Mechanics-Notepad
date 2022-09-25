@@ -8,15 +8,15 @@ namespace DataLibrary.Models
 {
     public class CarModel
     {
-        public int ID;
-        public string LicensePlateNumber;
-        public string Owner;
-        public string PhoneNumber;
-        public string Make;
-        public string Model;
-        public int YearOfProduction;
-        public string Generation;
-        public string Engine;
-        public string Notes;
+        public int ID { get; set; }
+        public string LicensePlateNumber { get; set; }
+        public string Owner { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public int YearOfProduction { get; set; }
+        public string Generation { get; set; }
+        public string Engine { get; set; }
+        public string Notes { get; set; }
     }
 }

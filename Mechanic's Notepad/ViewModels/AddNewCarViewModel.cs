@@ -24,8 +24,8 @@ namespace Mechanic_s_Notepad.ViewModels
         [RelayCommand]
         void TextChanged()
         {
-            if (car.Make.ToString() != "" & car.Model.ToString() != "" & car.LicansePlateNumber.ToString() != "" &
-                car.Owner.ToString() != "")
+            if (car.Make != "" & car.Model != "" & car.LicansePlateNumber != "" &
+                car.Owner != "")
             {
                 saveButtonTextColor = Brush.White.Color;
             }
@@ -35,9 +35,10 @@ namespace Mechanic_s_Notepad.ViewModels
             }
         }
 
-        AddNewCarViewModel()
+        public AddNewCarViewModel()
         {
             car = new Car();
+            car.Make = car.Model = car.LicansePlateNumber = car.Owner = "";
             saveButtonTextColor = Brush.Gray.Color;
         }
     }

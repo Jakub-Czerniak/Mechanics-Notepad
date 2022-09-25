@@ -12,12 +12,11 @@ namespace DataLibrary.Logic
     {
         public static List<CarModel> LoadCars()
         {
-            string sql = @"SELECT Car.ID, Car.LicensePlateNumber, Make.Name AS Make, Customer.Name AS Owner, Model.Name AS Model, YearOfProduction.Year AS YearOfProduction,
+            string sql = @"SELECT Car.ID, Car.LicensePlateNumber, Make.Name AS Make, Customer.Name AS Owner, Model.Name AS Model, Car.YearOfProduction AS YearOfProduction,
                             Car.Generation, Engine.Name AS Engine FROM Car 
                             INNER JOIN  Make ON Car.MakeID = Make.ID 
                             INNER JOIN Customer ON Car.CustomerID = Customer.ID
                             INNER JOIN Model ON Car.ModelID = Model.ID 
-                            INNER JOIN YearOfProduction ON Car.YearOfProductionID = YearOfProduction.ID
                             INNER JOIN Engine ON Car.EngineID = Engine.ID
                             ORDER BY Car.DateAccessed DESC
                             ";
@@ -70,45 +69,31 @@ namespace DataLibrary.Logic
                 Generation = generation,
             };
 
-            string sql =
-                @"IF NOT EXISTS (SELECT * FROM Customer WHERE PhoneNumber = @PhoneNumber)
-                    BEGIN
-                    INSERT INTO Customer(Name, PhoneNumber)
-                    VALUES (@Owner, @PhoneNumber)
-                    SET @customerID = SCOPE_IDENTITY()
-                    END
-                    ELSE
-                    BEGIN
-                    SET @customerID = (SELECT ID FROM Customer WHERE PhoneNumber = @PhoneNumber)
-                    UPDATE Customer
-                    SET Name = @Owner
-                    WHERE ID = @customerID
-                    END
-                    
-                    IF NOT EXISTS (SELECT * FROM Make WHERE Name=@Make)
-                    BEGIN
-                    INSERT INTO Make(Name)
-                    VALUES (@Make)
-                    SET @makeID = SCOPE_IDENTITY()
-                    END
-                    ELSE
-                    BEGIN
-                    SET @makeID = (SELECT ID FROM Make WHERE Name = @Make)
-                    END
-                    
-                    IF NOT EXISTS (SELECT * FROM Model WHERE MakeID = @makeID AND Name = @Model)
-                    BEGIN 
-                    INSERT INTO Model(MakeID, Name)
-                    VALUES(@makeID, @Model)
-                    ELSE
-                    BEGIN
-                    SET @modelID = (SELECT ID FROM Model WHERE MakeID = @makeID AND Name = @Model)
-                    END
-                    
-                    IF NOT EXISTS
-                    
-                    ";
-            return SqliteDataAccess.SaveData<CarModel>(sql, data);
+            string sql1 = "INSERT INTO Customer(Name, PhoneNumber) VALUES(@Owner, @PhoneNumber) ON CONFLICT(PhoneNumber) DO UPDATE SET Name = excluded.Name";
+
+            string sql2 = "INSERT INTO Make(Name) VALUES(@Make) ON CONFLICT(Name) DO NOTHING";
+
+            string sql3 = @"INSERT INTO Model(MakeID, Name)
+                            VALUES ((SELECT ID FROM Make WHERE Name = @Make), @Model)
+                            ON CONFLICT(Name) DO NOTHING";
+            string sql4 = @"INSERT INTO Engine(Name)
+                            VALUES (@Engine)
+                            ON CONFLICT(Name) DO NOTHING";
+            string sql5 = @"INSERT INTO Car(LicensePlateNumber, MakeID, ModelID, YearOfProduction, EngineID, Generation, CustomerID, DateAccessed)
+                            VALUES(@LicensePlateNumber, (SELECT ID FROM Make WHERE Name = @Make), (SELECT ID FROM Model WHERE Name = @Model), @YearOfProduction, (SELECT ID FROM Engine WHERE Name = @Engine), @Generation, (SELECT ID FROM Customer WHERE PhoneNumber = @PhoneNumber), strftime('%s','now'))
+                            ON CONFLICT(LicensePlateNumber) DO UPDATE SET
+                            MakeID = excluded.MakeID,
+                            ModelID = excluded.ModelID,
+                            YearOfProduction = excluded.YearOfProduction,
+                            EngineID = excluded.EngineID,
+                            Generation = excluded.Generation,
+                            CustomerID = excluded.CustomerID,
+                            DateAccessed = excluded.DateAccessed";
+            SqliteDataAccess.SaveData<CarModel>(sql1, data);
+            SqliteDataAccess.SaveData<CarModel>(sql2, data);
+            SqliteDataAccess.SaveData<CarModel>(sql3, data);
+            SqliteDataAccess.SaveData<CarModel>(sql4, data);
+            return SqliteDataAccess.SaveData<CarModel>(sql5, data);
         }
 
         public static List<CarModel> SearchForOwner(string owner) //looking for owner after some letter is written in search bar

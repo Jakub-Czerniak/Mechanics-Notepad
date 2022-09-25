@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Kuba/source/repos/Mechanic's Notepad/Mechanic's Notepad/MechNoteDB.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1606"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,3:mainCar"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Car" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="138"/><column index="3" value="56"/><column index="4" value="60"/><column index="5" value="137"/><column index="6" value="64"/><column index="7" value="79"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1"></sql><current_tab id="0"/></tab_sql></sqlb_project>
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Kuba/source/repos/Jakub-Czerniak/Mechanics-Notepad/Mechanic's Notepad/MechNoteDB.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2006"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainCustomer"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Car" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="138"/><column index="3" value="56"/><column index="4" value="60"/><column index="5" value="137"/><column index="6" value="64"/><column index="7" value="79"/><column index="8" value="84"/><column index="9" value="101"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Customer" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="92"/><column index="3" value="97"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Engine" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="43"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Make" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="43"/><column index="3" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="ToDoPoints" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="70"/><column index="3" value="40"/><column index="4" value="51"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">INSERT INTO Customer(Name, PhoneNumber)
+VALUES('Jakub Czerniak','798558791')
+ON CONFLICT(PhoneNumber) DO UPDATE SET 
+Name = excluded.Name
+
+INSERT INTO Make(Name)
+VALUES('Audi')
+ON CONFLICT(Name) DO NOTHING
+
+INSERT INTO Model(MakeID, Name)
+VALUES ((SELECT ID FROM Make WHERE Name = 'Audi'), 'TT')
+ON CONFLICT(Name) DO NOTHING
+
+INSERT INTO Engine(Name)
+VALUES ('TFSI 2.0')
+ON CONFLICT(Name) DO NOTHING
+
+INSERT INTO Car(LicensePlateNumber, MakeID, ModelID, YearOfProduction, EngineID, Generation, CustomerID, DateAccessed)
+VALUES('OP4978G', (SELECT ID FROM Make WHERE Name = 'Audi'), (SELECT ID FROM Model WHERE Name = 'TT'), '2010', (SELECT ID FROM Engine WHERE Name = 'TFSI 2.0'), 'II', strftime('%s','now'))
+ON CONFLICT(LicensePlateNumber) DO UDPATE SET
+MakeID = excluded.MakeID,
+ModelID = excluded.ModelID,
+YearOfProduction = excluded.YearOfProduction,
+EngineID = excluded.EngineID,
+Generation = excluded.Generation,
+DateAccessed = excluded.DateAccessed</sql><current_tab id="0"/></tab_sql></sqlb_project>

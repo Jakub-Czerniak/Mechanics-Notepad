@@ -1,3 +1,4 @@
+using DataLibrary.Logic;
 using Mechanic_s_Notepad.ViewModels;
 
 namespace Mechanic_s_Notepad.Views;
@@ -8,6 +9,6 @@ public partial class CarListPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = new CarListViewModel();
-		
+		CarProcessor.LoadCars();
 	}
 }
