@@ -14,32 +14,34 @@ namespace Mechanic_s_Notepad.ViewModels
         Color saveButtonTextColor;
 
         [RelayCommand]
-        void AddNewCar()
+        async void AddNewCar()
         {
-            if(car != null)
+            if(car != null & car.Make != "" & car.Model != "" & car.LicansePlateNumber != "" &
+                car.Owner != "" & car.PhoneNumber != "")
             _ = CarProcessor.AddNewCar(car.Owner, car.PhoneNumber, car.LicansePlateNumber ,car.Make,car.Model,car.YearOfProduction,car.Engine, car.Generation);
             car = null;
+            await Shell.Current.GoToAsync("../");
         }
 
         [RelayCommand]
         void TextChanged()
         {
             if (car.Make != "" & car.Model != "" & car.LicansePlateNumber != "" &
-                car.Owner != "")
+                car.Owner != "" & car.PhoneNumber != "")
             {
-                saveButtonTextColor = Brush.White.Color;
+                SaveButtonTextColor = Brush.Black.Color;
             }
             else
             {
-                saveButtonTextColor = Brush.Gray.Color;
+                SaveButtonTextColor = Brush.Gray.Color;
             }
         }
 
         public AddNewCarViewModel()
         {
             car = new Car();
-            car.Make = car.Model = car.LicansePlateNumber = car.Owner = "";
-            saveButtonTextColor = Brush.Gray.Color;
+            car.Make = car.Model = car.LicansePlateNumber = car.Owner = car.PhoneNumber = "";
+            SaveButtonTextColor = Brush.Gray.Color;
         }
     }
 }

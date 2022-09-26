@@ -5,9 +5,10 @@
              xmlns:viewmodel="clr-namespace:Mechanic_s_Notepad.ViewModels"
              x:DataType="viewmodel:CarListViewModel"
              xmlns:model="clr-namespace:Mechanic_s_Notepad.Models"
-             Title="{Binding Title}">
-    <Grid>
+             Title="">
+    <Grid BackgroundColor="#070705" >
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
@@ -15,48 +16,52 @@
             <ColumnDefinition Width ="5*"/>
             <ColumnDefinition Width ="1*"/>
         </Grid.ColumnDefinitions>
+        <SearchBar BackgroundColor="#161716"  Grid.ColumnSpan="2" Margin="10,10,10,10" Placeholder="Search" PlaceholderColor="#414747"/>
         <Button Command="{Binding AddButtonTapCommand}" ZIndex="1"
-                Text="+" Grid.Column="1" Grid.Row="1" FontSize="56" TextColor="Black" BackgroundColor="SteelBlue" Margin="1" MaximumHeightRequest="50" MaximumWidthRequest="50"/>
-        <RefreshView x:DataType="viewmodel:CarListViewModel" Command="{Binding LoadCarsCommand}" Grid.ColumnSpan="2" Grid.RowSpan="2">
-        <CollectionView x:Name="CarListView" ItemsSource="{Binding Cars}">
+                Text="+" Grid.Column="1" Grid.Row="2"  TextColor="#070705" BackgroundColor="SteelBlue" Margin="1" MaximumHeightRequest="50" MaximumWidthRequest="50"/>
+        <RefreshView x:DataType="viewmodel:CarListViewModel" Command="{Binding LoadCarsCommand}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="10,0,10,10">
+            <CollectionView x:Name="CarListView" ItemsSource="{Binding Cars}" BackgroundColor="#161716" >
 
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Car">
-                    <Grid>
+                <DataTemplate x:DataType="model:Car" >
+                    <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
+                            <RowDefinition Height="0.05*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Make}"
-                               FontSize="Default"
+                               FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="0" Grid.Row="0"/>
                         <Label Text="{Binding Model}"
-                               FontSize="Default"
+                               FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="1" Grid.Row="0"/>
                         <Label Text="{Binding Generation}"
-                               FontSize="Default"
+                               FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="2" Grid.Row="0"/>
                         <Label Text="{Binding YearOfProduction}"
-                               FontSize="Default"
+                               FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="0" Grid.Row="1"/>
                         <Label Text="{Binding Engine}"
-                               FontSize="Default"
+                               FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="1" Grid.Row="1"
-                               Grid.RowSpan="2"/>
+                               Grid.ColumnSpan="2"/>
                         <Label Text="{Binding Owner}"
-                               FontSize="Default"
+                               FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="0" Grid.Row="2"
-                               Grid.RowSpan="2"/>
+                               Grid.ColumnSpan="2"/>
                         <Label Text="{Binding LicansePlateNumber}"
-                               FontSize="Default"
+                               FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="2" Grid.Row="2"/>
+
+                            <Line Grid.Row="3" Grid.ColumnSpan="2" Stroke="#e8e9c9" BackgroundColor="#e8e9c9" StrokeThickness="1" HorizontalOptions="Fill"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

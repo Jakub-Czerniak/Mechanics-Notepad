@@ -7,20 +7,20 @@
              x:DataType="viewmodel:AddNewCarViewModel"
              Title="">
 
-    <ScrollView>
+    <ScrollView BackgroundColor="#070705">
         <VerticalStackLayout Padding="10">
-            <Grid BackgroundColor="DarkSlateGray" Padding="10">
+            <Grid BackgroundColor="#161716" Padding="10" HeightRequest="55">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Add a new car" FontSize="18" VerticalOptions="Center" />
-                <Button x:Name="SaveButton" Command="{Binding AddNewCarCommand}" Grid.Column="1" Text="Save"  HorizontalOptions="End" BackgroundColor="Wheat"
-                        BorderColor="Black" TextColor="{Binding SaveButtonTextColor}" />
+                <Label Text="Add a new car" FontSize="Default" TextColor="#e8e9c9" FontAttributes="Bold" VerticalOptions="Center" />
+                <Button x:Name="SaveButton" Command="{Binding AddNewCarCommand}" Grid.Column="1" Text="Save" FontAttributes="Bold"  HorizontalOptions="End" BackgroundColor="#161716"
+                        BorderColor="#070705" TextColor="{Binding SaveButtonTextColor}" />
             </Grid>
-            
-            <Label Text="Owner" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="OwnerEntry" Text="{Binding Car.Owner}">
+
+            <Label Text="Owner" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0" />
+            <Entry x:Name="OwnerEntry" Text="{Binding Car.Owner}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716">
                 <Entry.Behaviors>
                     <toolkit:EventToCommandBehavior 
                         EventName="TextChanged"
@@ -29,8 +29,8 @@
                 </Entry.Behaviors>
             </Entry>
 
-            <Label Text="Phone number" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="PhoneEntry" Text="{Binding Car.PhoneNumber}">
+            <Label Text="Phone number" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0"/>
+            <Entry x:Name="PhoneEntry" Text="{Binding Car.PhoneNumber}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716">
                 <Entry.Behaviors>
                     <toolkit:EventToCommandBehavior 
                         EventName="TextChanged"
@@ -38,8 +38,8 @@
                 </Entry.Behaviors>
             </Entry>
 
-            <Label Text="Licanse plate number" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="LicanseEntry" Text="{Binding Car.LicansePlateNumber}">
+            <Label Text="Licanse plate number" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0"/>
+            <Entry x:Name="LicanseEntry" Text="{Binding Car.LicansePlateNumber}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716" TextTransform="Uppercase">
                 <Entry.Behaviors>
                     <toolkit:EventToCommandBehavior 
                         EventName="TextChanged"
@@ -47,8 +47,8 @@
                 </Entry.Behaviors>
             </Entry>
 
-            <Label Text="Make" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="MakeEntry" Text="{Binding Car.Make}">
+            <Label Text="Make" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0"/>
+            <Entry x:Name="MakeEntry" Text="{Binding Car.Make}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716">
                 <Entry.Behaviors>
                     <toolkit:EventToCommandBehavior 
                         EventName="TextChanged"
@@ -56,23 +56,23 @@
                 </Entry.Behaviors>
             </Entry>
 
-            <Label Text="Model" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="ModelEntry" Text="{Binding Car.Model}">
+            <Label Text="Model" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0"/>
+            <Entry x:Name="ModelEntry" Text="{Binding Car.Model}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716" >
                 <Entry.Behaviors>
                     <toolkit:EventToCommandBehavior 
                         EventName="TextChanged"
                         Command="{Binding TextChangedCommand}"/>
                 </Entry.Behaviors>
             </Entry>
-        
-            <Label Text="Year of production" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="YearEntry" Text="{Binding Car.YearOfProduction}"/>
-        
-            <Label Text="Engine" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="EngineEntry" Text="{Binding Car.Engine}"/>
 
-            <Label Text="Generation" TextColor="Gray" FontSize="Small"/>
-            <Entry x:Name="GenerationEntry" Text="{Binding Car.Generation}"/>
+            <Label Text="Year of production" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0" />
+            <Entry x:Name="YearEntry" Text="{Binding Car.YearOfProduction}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716" SelectionLength="4" MaxLength="4"/>
+
+            <Label Text="Engine" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0"/>
+            <Entry x:Name="EngineEntry" Text="{Binding Car.Engine}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716"/>
+
+            <Label Text="Generation" TextColor="#e8e9c9" FontSize="10" Padding="0,10,0,0"/>
+            <Entry x:Name="GenerationEntry" Text="{Binding Car.Generation}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716"/>
 
         
         </VerticalStackLayout>

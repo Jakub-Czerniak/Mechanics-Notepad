@@ -11,4 +11,5 @@ public partial class CarListPage : ContentPage
 		BindingContext = new CarListViewModel();
 		CarProcessor.LoadCars();
 	}
+
 }

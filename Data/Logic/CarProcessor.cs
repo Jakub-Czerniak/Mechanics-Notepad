@@ -92,7 +92,9 @@ namespace DataLibrary.Logic
             SqliteDataAccess.SaveData<CarModel>(sql1, data);
             SqliteDataAccess.SaveData<CarModel>(sql2, data);
             SqliteDataAccess.SaveData<CarModel>(sql3, data);
-            SqliteDataAccess.SaveData<CarModel>(sql4, data);
+            if (data.Engine != null)
+                SqliteDataAccess.SaveData<CarModel>(sql4, data);
+
             return SqliteDataAccess.SaveData<CarModel>(sql5, data);
         }
 
