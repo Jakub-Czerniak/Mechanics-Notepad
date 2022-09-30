@@ -5,6 +5,7 @@ using DataLibrary.Logic;
 
 namespace Mechanic_s_Notepad.ViewModels
 {
+    [QueryProperty("Car","Car")]
     public partial class CarDetailsViewModel : ObservableObject
     {
         [ObservableProperty]
@@ -13,6 +14,12 @@ namespace Mechanic_s_Notepad.ViewModels
         List<Service> services;
 
         [RelayCommand]
+        async void AddButtonTap()
+        {
+            return;
+        }
+
+        /*[RelayCommand]
         void LoadCarDetails(int id)
         {
             var carObj = CarProcessor.LoadCarDetails(id);
@@ -38,7 +45,7 @@ namespace Mechanic_s_Notepad.ViewModels
                         Date = service.Date,
                     });
 
-        }
+        }*/
 
         public CarDetailsViewModel()
         {

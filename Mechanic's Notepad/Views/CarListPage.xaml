@@ -17,14 +17,14 @@
             <ColumnDefinition Width ="1*"/>
         </Grid.ColumnDefinitions>
         <SearchBar BackgroundColor="#161716"  Grid.ColumnSpan="2" Margin="10,10,10,10" Placeholder="Search" PlaceholderColor="#414747"/>
-        <Button Command="{Binding AddButtonTapCommand}" ZIndex="1"
+        <Button Command="{Binding AddButtonTapCommand}" ZIndex="1" 
                 Text="+" Grid.Column="1" Grid.Row="2"  TextColor="#070705" BackgroundColor="SteelBlue" Margin="1" MaximumHeightRequest="50" MaximumWidthRequest="50"/>
         <RefreshView x:DataType="viewmodel:CarListViewModel" Command="{Binding LoadCarsCommand}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="10,0,10,10">
-            <CollectionView x:Name="CarListView" ItemsSource="{Binding Cars}" BackgroundColor="#161716" >
+            <CollectionView x:Name="CarListView" ItemsSource="{Binding Cars}"  BackgroundColor="#161716" >
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Car" >
-                    <Grid Margin="10">
+                    <Grid Margin="10" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
@@ -37,6 +37,11 @@
                             <ColumnDefinition Width="1*"/>
                             
                         </Grid.ColumnDefinitions>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CarListViewModel}},Path=CarTapped}"
+                                                    CommandParameter="{Binding .}"
+                                                  NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
                         <Label Text="{Binding Make}"
                                FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="0" Grid.Row="0"/>
@@ -61,7 +66,7 @@
                                FontSize="Default" TextColor="#e8e9c9"
                                Grid.Column="2" Grid.Row="2"/>
 
-                            <Line Grid.Row="3" Grid.ColumnSpan="2" Stroke="#e8e9c9" BackgroundColor="#e8e9c9" StrokeThickness="1" HorizontalOptions="Fill"/>
+                            <Line Grid.Row="3" Grid.ColumnSpan="2" Stroke="#e8e9c9" BackgroundColor="#070705" StrokeThickness="1" HorizontalOptions="Fill"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

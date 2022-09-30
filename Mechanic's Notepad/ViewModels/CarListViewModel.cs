@@ -3,6 +3,7 @@ using Mechanic_s_Notepad.Models;
 using System.Collections.ObjectModel;
 using DataLibrary.Logic;
 using CommunityToolkit.Mvvm.Input;
+using Mechanic_s_Notepad.Views;
 
 namespace Mechanic_s_Notepad.ViewModels
 {
@@ -28,10 +29,14 @@ namespace Mechanic_s_Notepad.ViewModels
             CarTapped = new Command<Car>(OnCarSelected);
             ExecuteLoadCarsCommand();
         }
-
-        private void OnCarSelected(Car obj)
+        
+        async void OnCarSelected(Car obj)
         {
-            throw new NotImplementedException();
+            var navigationParametr = new Dictionary<string, object>
+            {
+                {"Car", obj }
+            };
+            await Shell.Current.GoToAsync($"{nameof(CarDetailsPage)}", navigationParametr);
         }
         
         private void ExecuteLoadCarsCommand()

@@ -14,7 +14,7 @@ namespace DataLibrary.DataAccess
     {
         private static string LoadConnectionString()
         {
-            string dbPath = $"Data source = C:\\Users\\Kuba\\source\\repos\\Jakub-Czerniak\\Mechanics-Notepad\\Mechanic's Notepad\\MechNoteDB.db";
+            string dbPath = $"Data source = C:\\Users\\Kuba\\source\\repos\\Mechanic's Notepad\\Mechanic's Notepad\\MechNoteDB.db";//Jakub - Czerniak\\Mechanics - Notepad\\
             //var dbPath = Path.Combine("Data source =", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MechNoteDB.db");
             return dbPath; 
         }
