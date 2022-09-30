@@ -9,12 +9,6 @@ namespace Mechanic_s_Notepad.ViewModels
 {
     public partial class CarListViewModel : ObservableObject
     {
-        string title = string.Empty;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
 
         public ObservableCollection<Car> Cars { get; }
         public Command LoadCarsCommand { get; }
@@ -23,7 +17,6 @@ namespace Mechanic_s_Notepad.ViewModels
 
         public CarListViewModel()
         {
-            Title = "Mechanic's Notepad";
             Cars = new ObservableCollection<Car>();
             LoadCarsCommand = new Command(ExecuteLoadCarsCommand);
             CarTapped = new Command<Car>(OnCarSelected);

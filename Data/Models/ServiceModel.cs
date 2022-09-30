@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataLibrary.Models
+﻿namespace DataLibrary.Models
 {
     public class ServiceModel
     {
-        public int ID;
-        public string ShortDesc;
-        public string Notes;
-        public decimal Price;
-        public string Status;
-        public DateTime Date;
-        public int CarID;
-        public List<string> ToDoPoints;
-        public List<Image> Photos;
+        public int ID { get; set; }
+        public string ShortDesc { get; set; }
+        public string Notes { get; set; }
+        public decimal Price { get; set; }
+        public string Status { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime FinishDate { get; set; }
+        public int CarID { get; set; }
+        public List<Image> Photos { get; set; }
     }
 }

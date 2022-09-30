@@ -1,27 +1,33 @@
 ﻿using DataLibrary.Models;
 using DataLibrary.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLibrary.Logic
 {
     public class ServiceProcessor
     {
-        public static List<ServiceModel> LoadServices()
-        {
-            return null;
-        }
-
         public static List<ServiceModel> LoadCarSeviceHistory(int id)
         {
             return null;
         }
 
-        public static int AddNewService(string shortDesc, string notes, decimal price, string status, int carID )
+        public static int AddNewService(string shortDesc, string notes, decimal price, DateTime startDate, DateTime finishDate, string status, int carID, List<string> toDopoints)
         {
+            ServiceModel data = new ServiceModel 
+            { 
+                ShortDesc = shortDesc,
+                Notes = notes,
+                Price = price,
+                StartDate = startDate,
+                FinishDate = finishDate,
+                Status = status,
+                CarID = carID,
+            };
+            List<ToDoPointModel> ToDoPoints = new List<ToDoPointModel>();
+            foreach (string toDo in toDopoints)
+                ToDoPoints.Add(new ToDoPointModel { ToDo = toDo, Status = "ToDo" });
+
+            
+
             return 0;
         }
 
@@ -29,9 +35,6 @@ namespace DataLibrary.Logic
         {
             return 0;
         }
-
-
-
 
     }
 }
