@@ -1,12 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Mechanic_s_Notepad.Views.AddServicePage"
-             Title="AddServicePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewmodel="clr-namespace:Mechanic_s_Notepad.ViewModels"
+             x:DataType="viewmodel:AddNewServiceViewModel"
+             Title="">
+
+    <ScrollView BackgroundColor="#070705">
+        <VerticalStackLayout Padding="10">
+            <Grid BackgroundColor="#161716" Padding="10" HeightRequest="55">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="new service" FontSize="Default" TextColor="#e8e9c9" FontAttributes="Bold" VerticalOptions="Center" />
+                <Button x:Name="SaveButton" Command="{Binding AddNewServiceCommand}" Grid.Column="1" Text="Save" FontAttributes="Bold"  HorizontalOptions="End" BackgroundColor="#161716"
+                        BorderColor="#070705" TextColor="#e8e9c9" />
+            </Grid>
+
+            <Label Text="Description" TextColor="#e8e9c9" FontSize="16" Padding="0,10,0,0" />
+            <Entry x:Name="DescriptionEntry" Text="{Binding Service.ShortDesc}" TextColor="#e8e9c9" FontSize="Default" BackgroundColor="#161716">
+            </Entry>
+
+            <Label Text="To do list" TextColor="#e8e9c9" FontSize="16" Padding="0,10,0,0"/>
+
+            <CollectionView ItemsSource="{Binding ToDoList}" BackgroundColor="#161716">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+                        <SwipeView BackgroundColor="#070705">
+                            <SwipeView.RightItems>
+                                <SwipeItems >
+                                    <SwipeItem Text="Delete" BackgroundColor="Red"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddNewServiceViewModel}}, Path=DeleteToDoCommand}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Grid Padding="0.5" >
+                                <Frame BackgroundColor="#161716" >
+                                    <Label Text="{Binding .}" TextColor="#e8e9c9" FontSize="Default"/>
+                                </Frame>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Entry TextColor="#e8e9c9" Text="{Binding ToDoText}">
+                <Entry.Behaviors>
+                    <toolkit:EventToCommandBehavior EventName="Completed" Command="{Binding AddNewToDoCommand}"/>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Grid Padding="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Date"  FontSize="16" TextColor="#e8e9c9"  VerticalOptions="Center"/>
+                <DatePicker TextColor="#e8e9c9" Grid.Column="1"/>
+            </Grid>
+
+
+            <Label Text="Notes" FontSize="16"  Grid.Row="8" TextColor="#e8e9c9"  Padding="0,20,0,0"/>
+            <Editor Text="{Binding Service.Notes}"
+                    FontSize="Default" TextColor="#e8e9c9"
+                    Grid.Row="9"
+                    HeightRequest="100"
+                    BackgroundColor="#161716"
+                    />
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

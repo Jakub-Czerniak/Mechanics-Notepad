@@ -10,7 +10,7 @@ namespace DataLibrary.Logic
             return null;
         }
 
-        public static int AddNewService(string shortDesc, string notes, decimal price, DateTime startDate, DateTime finishDate, string status, int carID, List<string> toDopoints)
+        public static int AddNewService(string shortDesc, string notes, decimal price, DateTime startDate, string status, int carID, List<string> toDopoints)
         {
             ServiceModel data = new ServiceModel 
             { 
@@ -18,7 +18,6 @@ namespace DataLibrary.Logic
                 Notes = notes,
                 Price = price,
                 StartDate = startDate,
-                FinishDate = finishDate,
                 Status = status,
                 CarID = carID,
             };

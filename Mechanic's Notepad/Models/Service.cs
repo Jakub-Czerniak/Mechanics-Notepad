@@ -14,7 +14,6 @@ namespace Mechanic_s_Notepad.Models
         public decimal Price { get; set; }
         public string Status { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime FinishDate { get; set; }
         public int CarID { get; set; }
         public List<string> ToDoPoints { get; set; }
         public List<Image> Photos { get; set; }
