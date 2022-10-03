@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using Mechanic_s_Notepad.Models;
 using DataLibrary.Logic;
 using System.Collections.ObjectModel;
+using Mechanic_s_Notepad.Views;
+using Microsoft.Maui.Graphics.Text;
 
 namespace Mechanic_s_Notepad.ViewModels
 {
@@ -10,21 +12,33 @@ namespace Mechanic_s_Notepad.ViewModels
     public partial class AddNewServiceViewModel : ObservableObject
     {
         [ObservableProperty]
-        int carID;
+        string carID;
         [ObservableProperty]
         Service service;
         [ObservableProperty]
         string toDoText;
         [ObservableProperty]
         public ObservableCollection<string> toDoList;
+        [ObservableProperty]
+        public TimeSpan timeOfTheDay;
 
         [RelayCommand]
-        async void AddNewService()
-        {
-            if(service.ShortDesc == "")
-            ServiceProcessor.AddNewService(service.ShortDesc, service.Notes, service.Price, service.StartDate, service.Status, service.CarID, service.ToDoPoints);
-            service = null;
-            await Shell.Current.GoToAsync("../");
+        void AddNewService()
+        { 
+            if (service != null & service.ShortDesc != "")
+            {
+                service.CarID = Int32.Parse(CarID);
+                if (service.StartDate.CompareTo(DateTime.Now) > 0)
+                    service.Status = "Planned";
+                else
+                    service.Status = "Started";
+                service.StartDate += timeOfTheDay;
+                foreach (string toDo in toDoList)
+                    service.ToDoPoints.Add(toDo); 
+                ServiceProcessor.AddNewService(service.ShortDesc, service.Notes, service.Price, service.StartDate, service.Status, service.CarID, service.ToDoPoints);
+                service = null;
+            }
+            Shell.Current.GoToAsync(nameof(CarListPage));
         }
 
         [RelayCommand]
@@ -47,10 +61,11 @@ namespace Mechanic_s_Notepad.ViewModels
         public AddNewServiceViewModel()
         {
             service = new Service();
+            service.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,0,0,0,0);
             ToDoList = new ObservableCollection<string>();
             service.ShortDesc = service.Notes = "";
             service.Status = "Started";
-            service.CarID = CarID;
+            service.ToDoPoints = new List<string>();
         }
     }
 }

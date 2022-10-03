@@ -56,7 +56,7 @@ namespace Mechanic_s_Notepad.ViewModels
         [RelayCommand]
         async void AddButtonTap()
         {
-            await Shell.Current.GoToAsync("AddCarPage");
+            await Shell.Current.GoToAsync($"{nameof(AddCarPage)}");
         }
     }
 }
